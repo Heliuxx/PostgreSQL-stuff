@@ -1,0 +1,17 @@
+PostgreSQL query where I was messing around with a free database regarding rentals at a film store.  Was looking for people in particular that would
+tend to spend more than the average amount spent throughout all customers.  I wanted to find which country's customers tended to spend more.
+
+select first_name||' '||last_name as name, customer.customer_id, city, country
+	from address
+inner join city on address.city_id = city.city_id
+inner join customer on address.address_id = customer.address_id
+inner join payment on customer.customer_id = payment.customer_id
+inner join country on country.country_id = city.country_id
+		where payment.amount > (
+			select avg(amount)
+			from payment
+)
+		--and country = 'United States'
+    --and country like 'Russian%'
+group by first_name||' '||last_name, customer.customer_id, city, country
+order by country;
