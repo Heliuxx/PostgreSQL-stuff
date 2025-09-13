@@ -1,1 +1,1 @@
-Showing SQL codes really do not look as appealing on here.
+Showing my SQL queries on here is not impressive. Questioning if it is even worth it.
